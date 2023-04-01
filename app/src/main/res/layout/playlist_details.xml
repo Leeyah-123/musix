@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlaylistDetails"
+    android:layout_marginTop="2dp">
+
+    <!-- Total Songs -->
+    <TextView
+        android:id="@+id/totalSongsPD"
+        android:paddingVertical="10dp"
+        android:layout_marginStart="5dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_songs"
+        android:contentDescription="@string/total_songs"
+        android:textColor="@color/black"/>
+
+    <!-- Created At -->
+    <TextView
+        android:id="@+id/createdAtPD"
+        android:paddingVertical="10dp"
+        android:layout_marginEnd="5dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/created_at"
+        android:contentDescription="@string/created_at"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlistDetailsRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalSongsPD"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbarThumbVertical="@drawable/scrollbar_icon"
+        android:scrollbars="vertical"
+        android:paddingBottom="110dp"/>
+
+    <!--    shuffle button -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/shuffleBtnPD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:icon="@drawable/shuffle_icon"
+        android:contentDescription="@string/shuffle_btn"
+        app:iconSize="35dp"
+        app:iconTint="?attr/themeColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888"
+        app:strokeWidth="2dp"
+        app:strokeColor="?attr/themeColor"
+        android:visibility="invisible"/>
+
+    <!-- for buttons -->
+    <LinearLayout
+        android:id="@+id/panelBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- add button -->
+        <Button
+            android:id="@+id/addSongPD"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/add_song_to_playlist"
+            android:drawableTop="@drawable/add_icon"
+            android:text="@string/add_song_to_playlist"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintButtonSize" />
+
+        <!-- remove button -->
+        <Button
+            android:id="@+id/removeAllPD"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/remove_all"
+            android:drawableTop="@drawable/remove_icon"
+            android:text="@string/remove_all"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintButtonSize" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

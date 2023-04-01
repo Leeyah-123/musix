@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:padding="2dp"
+android:layout_marginBottom="5dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageViewFV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/music_player_icon"
+        app:shapeAppearanceOverlay="@style/curved"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/songNameFV"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text="@string/song_name"
+        android:layout_toEndOf="@id/imageViewFV"
+        android:layout_toStartOf="@+id/songDurationFV"
+        android:textColor="@color/black"
+        android:layout_marginStart="5dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/songAlbumFV"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="@string/song_album"
+        android:layout_toEndOf="@id/imageViewFV"
+        android:layout_toStartOf="@+id/songDurationFV"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/songDurationFV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_toStartOf="@+id/deleteBtnFV"
+        android:gravity="center"
+        android:text="@string/start_tv"
+        android:textColor="@color/black"
+        tools:ignore="TextSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/deleteBtnFV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/delete_icon"
+        android:contentDescription="@string/delete_btn"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@android:color/holo_red_dark"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

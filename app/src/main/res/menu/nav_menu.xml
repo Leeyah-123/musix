@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/navSettings"
+        android:icon="@drawable/settings_icon"
+        android:title="@string/settings_btn"/>
+
+    <item android:id="@+id/navAbout"
+        android:icon="@drawable/about_icon"
+        android:title="@string/about_btn"/>
+
+    <item android:id="@+id/navExit"
+        android:icon="@drawable/exit_app_icon"
+        android:title="@string/exit_btn"/>
+</menu>
