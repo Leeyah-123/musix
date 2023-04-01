@@ -7,10 +7,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.os.Binder
-import android.os.Handler
-import android.os.IBinder
-import android.os.Looper
+import android.os.*
 import android.support.v4.media.session.MediaSessionCompat
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -41,24 +38,30 @@ class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
 
     @SuppressLint("UnspecifiedImmutableFlag", "LaunchActivityFromNotification")
     fun showNotification(playPauseBtn: Int) {
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.FLAG_IMMUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
+
         val intent = Intent(baseContext, MainActivity::class.java)
-        val contentIntent = PendingIntent.getBroadcast(baseContext, 0, intent, 0)
+        val contentIntent = PendingIntent.getActivity(this, 0, intent, flag)
 
         val prevIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(
             ApplicationClass.PREVIOUS)
-        val prevPendingIntent = PendingIntent.getBroadcast(baseContext, 0, prevIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val prevPendingIntent = PendingIntent.getBroadcast(baseContext, 0, prevIntent, flag)
 
         val playIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(
             ApplicationClass.PLAY)
-        val playPendingIntent = PendingIntent.getBroadcast(baseContext, 0, playIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val playPendingIntent = PendingIntent.getBroadcast(baseContext, 0, playIntent, flag)
 
         val nextIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(
             ApplicationClass.NEXT)
-        val nextPendingIntent = PendingIntent.getBroadcast(baseContext, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext, 0, nextIntent, flag)
 
         val exitIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(
             ApplicationClass.EXIT)
-        val exitPendingIntent = PendingIntent.getBroadcast(baseContext, 0, exitIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val exitPendingIntent = PendingIntent.getBroadcast(baseContext, 0, exitIntent, flag)
 
         val imageArt = getImageArt(PlayerActivity.musicListPA[PlayerActivity.songPosition].path)
         val image = if (imageArt != null) {
@@ -75,6 +78,7 @@ class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
             .setLargeIcon(image)
             .setStyle(androidx.media.app.NotificationCompat.MediaStyle().setMediaSession(mediaSession.sessionToken))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .addAction(R.drawable.previous_icon, "Previous", prevPendingIntent)

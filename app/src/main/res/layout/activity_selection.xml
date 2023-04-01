@@ -29,9 +29,9 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.SearchView
+            android:theme="@style/coolBlue"
             android:id="@+id/searchViewSA"
             android:layout_width="match_parent"
-            style="?attr/theme"
             android:layout_height="50dp"
             app:queryHint="@string/search_songs"
             app:searchIcon="@drawable/search_icon"

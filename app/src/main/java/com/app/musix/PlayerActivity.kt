@@ -58,6 +58,16 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         super.onCreate(savedInstanceState)
         setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
 
+//        if (Build.VERSION.SDK_INT >= 27) {
+//            setShowWhenLocked(true)
+//            setTurnScreenOn(true)
+//        }
+//        else
+//            window.addFlags(
+//                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+//                        or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+//            )
+
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initializeLayout()
