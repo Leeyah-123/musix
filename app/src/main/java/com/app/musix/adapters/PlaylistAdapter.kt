@@ -5,6 +5,10 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -37,10 +41,15 @@ class PlaylistAdapter(private val context: Context, private var playlists: Array
         }
 
         holder.deleteBtn.setOnClickListener {
+            val text = "Are you sure you want to delete playlist ${playlists[position].name}?\nNote: This action is irreversible"
+            val ss = SpannableString(text)
+            val boldSpan = StyleSpan(Typeface.BOLD);
+            ss.setSpan(boldSpan, 41, 41 + playlists[position].name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             // showing a confirmation dialog
             val builder = MaterialAlertDialogBuilder(context)
             builder.setTitle("Delete Playlist")
-                .setMessage("Are you sure you want to delete playlist " + playlists[position].name + "?\nNote: This action is irreversible")
+                .setMessage(ss)
                 .setPositiveButton("Yes") {_, _ ->
                     deletePlaylist(position)
                 }

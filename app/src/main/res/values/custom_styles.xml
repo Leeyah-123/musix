@@ -4,7 +4,6 @@
         <item name="cornerSize">15%</item>
     </style>
     <style name="CustomEditText" parent="coolBlue">
-        <item name="themeColor">@color/cool_blue</item>
         <item name="colorPrimary">@color/black</item>
     </style>
 </resources>
