@@ -193,7 +193,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             // setLayout
             isPlaying = true
             binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
-            musicService?.showNotification(R.drawable.pause_icon)
+            musicService?.showNotification(R.drawable.pause_icon, 1F)
             binding.tvSeekbarStart.text = formatDuration(musicService?.mediaPlayer!!.currentPosition.toLong())
             binding.tvSeekbarEnd.text = formatDuration(musicService?.mediaPlayer!!.duration.toLong())
             binding.seekbarPA.progress = musicService?.mediaPlayer!!.currentPosition
@@ -280,14 +280,14 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     private fun playMusic() {
         isPlaying = true
         binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
-        musicService?.showNotification(R.drawable.pause_icon)
+        musicService?.showNotification(R.drawable.pause_icon, 1F)
         musicService?.mediaPlayer?.start()
     }
 
     private fun pauseMusic() {
         isPlaying = false
         binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
-        musicService?.showNotification(R.drawable.play_icon)
+        musicService?.showNotification(R.drawable.play_icon, 0F)
         musicService?.mediaPlayer?.pause()
     }
 
