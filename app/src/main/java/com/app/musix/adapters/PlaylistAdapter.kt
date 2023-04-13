@@ -11,6 +11,7 @@ import android.text.Spanned
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.app.musix.PlaylistActivity
@@ -18,6 +19,7 @@ import com.app.musix.PlaylistDetails
 import com.app.musix.databinding.PlaylistViewBinding
 import com.app.musix.pojo.Playlist
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.GsonBuilder
 
 class PlaylistAdapter(private val context: Context, private var playlists: ArrayList<Playlist>): RecyclerView.Adapter<PlaylistAdapter.MyHolder>() {
     class MyHolder(binding: PlaylistViewBinding): RecyclerView.ViewHolder(binding.root) {
@@ -77,5 +79,11 @@ class PlaylistAdapter(private val context: Context, private var playlists: Array
     private fun deletePlaylist(index: Int) {
         playlists.removeAt(index)
         notifyDataSetChanged()
+
+        // For persisting favorites data using shared preferences
+        val playlistsEditor = context.getSharedPreferences("PLAYLISTS", AppCompatActivity.MODE_PRIVATE).edit()
+        val playlistsJsonString = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
+        playlistsEditor.putString("Playlists", playlistsJsonString)
+        playlistsEditor.apply()
     }
 }

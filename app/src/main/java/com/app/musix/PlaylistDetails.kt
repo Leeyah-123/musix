@@ -59,6 +59,7 @@ class PlaylistDetails : AppCompatActivity() {
                     adapter.refreshPlaylist()
                     binding.totalSongsPD.text = "Total Songs: ${adapter.itemCount}"
                     dialog.dismiss()
+                    persistData()
                 }
                 .setNegativeButton("No") {dialog, _ -> dialog.dismiss()}
 
@@ -89,6 +90,7 @@ class PlaylistDetails : AppCompatActivity() {
         }
 
         adapter.notifyDataSetChanged()
+        persistData()
     }
 
     // back button functionality
@@ -104,7 +106,10 @@ class PlaylistDetails : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        persistData()
+    }
 
+    private fun persistData() {
         // For persisting favorites data using shared preferences
         val playlistsEditor = getSharedPreferences("PLAYLISTS", MODE_PRIVATE).edit()
         val playlistsJsonString = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)

@@ -61,6 +61,7 @@ class PlaylistActivity : AppCompatActivity() {
                 if (playlistName != null && playlistName.length >= 3) {
                     createPlaylist(playlistName.toString())
                     playlistAdapter.refreshPlaylist()
+                    persistData()
                 } else Toast.makeText(this, "Playlist name must be at least three characters", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("CANCEL") {dialog, _ -> dialog.dismiss()}
@@ -107,6 +108,7 @@ class PlaylistActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         playlistAdapter.notifyDataSetChanged()
+        persistData()
     }
 
     override fun onDestroy() {
